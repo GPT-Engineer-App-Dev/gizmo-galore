@@ -20,12 +20,15 @@ const Layout = () => {
       <div className="flex flex-col">
         <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
           <MobileSidebar />
-          <div className="w-full flex-1">{/* Add nav bar content here! */}</div>
+          <div className="w-full flex-1">
+            <SearchBar />
+          </div>
           <UserDropdown />
         </header>
         <main className="flex-grow p-4 overflow-auto">
           <Outlet />
         </main>
+        <Footer />
       </div>
     </div>
   );
@@ -37,7 +40,7 @@ const Sidebar = () => (
       <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
         <NavLink to="/" className="flex items-center gap-2 font-semibold">
           <Package2 className="h-6 w-6" />
-          <span>Acme Inc</span>
+          <span>ElectroMart</span>
         </NavLink>
       </div>
       <div className="flex-1">
@@ -69,7 +72,7 @@ const MobileSidebar = () => (
           className="flex items-center gap-2 text-lg font-semibold mb-4"
         >
           <Package2 className="h-6 w-6" />
-          <span className="sr-only">Acme Inc</span>
+          <span>ElectroMart</span>
         </NavLink>
         {navItems.map((item) => (
           <SidebarNavLink key={item.to} to={item.to}>
@@ -112,6 +115,35 @@ const SidebarNavLink = ({ to, children }) => (
   >
     {children}
   </NavLink>
+);
+
+const SearchBar = () => (
+  <input
+    type="text"
+    placeholder="Search for products..."
+    className="w-full p-2 border rounded-md"
+  />
+);
+
+const Footer = () => (
+  <footer className="flex items-center justify-between p-4 border-t bg-muted/40">
+    <div className="flex gap-4">
+      <NavLink to="/about">About Us</NavLink>
+      <NavLink to="/contact">Contact</NavLink>
+      <NavLink to="/privacy">Privacy Policy</NavLink>
+    </div>
+    <div className="flex gap-4">
+      <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+        Facebook
+      </a>
+      <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+        Twitter
+      </a>
+      <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+        Instagram
+      </a>
+    </div>
+  </footer>
 );
 
 export default Layout;
